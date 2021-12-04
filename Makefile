@@ -40,6 +40,10 @@ build/gr-arm64-linux: $(SOURCE)
 	@mkdir -p $(@D)
 	CGO_ENABLED=0 GOOS=linux GOARCH=arm64 $(GOBUILD) -o $@
 
+build/gr-arm64-darwin: $(SOURCE)
+	@mkdir -p $(@D)
+	CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 $(GOBUILD) -o $@
+
 release: build
 	github-release release -u webdevops -r go-replace -t "$(TAG)" -n "$(TAG)" --description "$(TAG)"
 	@for x in $(ALL); do \
